@@ -11,28 +11,20 @@ template <class T, class TFunc, class P1, class P2>
 void test(T expected, TFunc f, P1 p1, P2 p2)
 {
 	auto result = f(p1, p2);
-	if (expected != result)
-	{
-		std::cout << "testing: " << expected
-			<< "\texpected: " << expected
-			<< "== f(" << p1 << ", " << p2 << "), but  ==" << result << endl;
-
-	}
-	else
-	{
-		cout << "Test ok " << endl;
-	}
+	std::cout << "testing: " << expected
+		<< "\texpected: " << expected
+		<< "== f(" << p1 << ", " << p2 << ");";
 
 	if (expected != result)
 	{
-		std::cout << "Error: "
+		std::cout << "\tError: "
 			<< "\texpected: " << expected
 			<< "!= f(" << p1 << ", " << p2 << "), but " << result << endl;
 
 	}
 	else
 	{
-		cout << "Test ok " << endl;
+		cout << "\tTest ok " << endl;
 	}
 
 }
@@ -130,8 +122,7 @@ TIter binary_search_2(TIter begin, TIter end, T key)
 		return end;
 	}
 
-	assert(size > 1);
-
+	assert(size > 0);
 	auto m = begin + (end - begin) / 2;
 
 	if (key < *m)
@@ -147,6 +138,63 @@ TIter binary_search_2(TIter begin, TIter end, T key)
 	{
 		return *m;
 	}
+}
+
+template <class TIter, class T>
+TIter binary_search_3(TIter begin, TIter end, T key)
+{
+	assert(std::is_sorted(begin, end));	
+	while (begin < end)
+	{
+		auto m = begin + (end - begin) / 2;
+
+		if (key < *m)
+		{
+			end = m; // end = m
+		}
+		else if (*m < key) // [m+1, end
+		{
+			begin = m + 1;
+		}
+		else // *m == key
+		{
+			return m;
+		}
+	}
+
+	return begin;
+}
+
+template <class TIter, class T>
+TIter upper_bound(TIter begin, TIter end, T key)
+{
+	assert(std::is_sorted(begin, end));
+	while (begin < end)
+	{
+		// [beginm n) [m] (m, end)
+		auto m = begin + (end - begin) / 2;
+		if (key < *m)
+		{
+			end = m; // end = m
+		}
+		else if (*m < key) // [m+1, end
+		{
+			begin = m + 1;
+		}
+	}
+
+	return begin;
+}
+
+template <class TIter, class T>
+TIter binary_search_4(TIter begin, TIter end, T key)
+{
+	auto res = upper_bound(begin, end, key);
+
+	if (res == end)
+		return end;
+
+	return *res == key ? res : end;
 }
 //////////////////////////////////////////////////////////////////////////////
 
