@@ -111,8 +111,7 @@ void insertion_sor0t_r(Titer b, Titer e) {
 		}
 	}
 
-		assert(is_sorted(b, pivot));
-	}
+	assert(is_sorted(b, pivot));
 }
 
 int main()
