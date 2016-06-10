@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include <ostream>
 #include <iostream>
 #include <vector>
@@ -123,7 +122,6 @@ void test_sorts(TFunc sort_impl) {
 	test(true, adaptor, Vec(100, 100, 1, 1));
 	test(true, adaptor, Vec(8,6,0,7,5,9,3,9,2,5)); // even
 	test(true, adaptor, Vec(8, 6, 0, 7, 5, 9, 3, 9, 2)); // odd
-
 }
 
 int main()
