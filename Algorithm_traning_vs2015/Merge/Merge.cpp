@@ -90,7 +90,7 @@ void merge(const Titer b1, const Titer e1, const Titer b2, const Titer e2, Titer
 	assert((out-b_out) == (e1-b1)+(e2-b2));
 }
 
-// complexity O()
+// complexity O(n log(n))
 template <class TIter>
 void merge_sort(TIter b, TIter e, TIter out) {
 	if (e - b > 1) {
