@@ -1,0 +1,14 @@
+*.db
+*.suo
+Algorithm_traning_vs2015/Algorithm_traning_vs2015.VC.VC.opendb
+*.tlog
+*.log
+*.pdb
+*.ipch
+*.obj
+*.idb
+*.ilk
+*.db
+*.exe
+*.filters
+*.filters
