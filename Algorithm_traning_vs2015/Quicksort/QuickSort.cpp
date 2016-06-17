@@ -125,7 +125,17 @@ void partition(TIter b, TIter pivot, TIter e) {
 
 	assert(*max(b, pivot) < *pivot);
 	assert(*min(pivot + 1, e) >= *pivot);
+}
 
+template <class TIter>
+void quick_sort(TIter b, TIter e) {
+	if (e-b <= 1)
+		return;
+	
+	// TIter pivot = b;
+	TIter pivot = partial(b, e, *b);
+	quick_sort(b, pivot);
+	quick_sort(pivot+1, e);
 }
 
 int main(int argv, char  **argc) {
